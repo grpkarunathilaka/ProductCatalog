@@ -303,34 +303,7 @@ Special audit logs are created for:
 - Product updates (PUT)
 - Product deletion (DELETE)
 
-## Database Queries
-- Proper indexing on Name + Brand combination
-- Efficient filtering with LINQ expressions
-- Minimal data transfer with DTOs
-
-## Security Features
-
-### Input Validation
-- Server-side validation for all inputs
-- Prevention of SQL injection (EF Core parameterized queries)
-
-### Audit Trail
-- Complete audit log of all operations
-- Request correlation IDs for tracing
-- Detailed logging of all API calls
-
-## Development Guidelines
-
-### Adding New Features
-
-1. **Domain Changes**: Add new entities or modify existing ones in the Domain layer
-2. **Application Logic**: Add new services or DTOs in the Application layer
-3. **Data Access**: Add repository methods in the Infrastructure layer
-4. **API Endpoints**: Add controllers or endpoints in the API layer
-5. **Tests**: Add corresponding unit and integration tests
-
-
-### Improvements
+## Improvements
 
 1. Authentication & Authorization
 2. Replace In-Memory Database with SQL Server

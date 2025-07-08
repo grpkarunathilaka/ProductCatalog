@@ -166,7 +166,7 @@ namespace ProductCatalog.Infrastructure.Repositories
                 _logger.LogInformation("Updating product with ID: {ProductId}", product.Id);
 
                 product.UpdateAt = DateTime.UtcNow;
-                _context.Products.Add(product);
+                _context.Products.Update(product);
                 await _context.SaveChangesAsync();
 
                 _logger.LogInformation("Product updated successfully with ID: {ProductId}", product.Id);

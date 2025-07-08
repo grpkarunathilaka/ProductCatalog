@@ -313,7 +313,6 @@ Special audit logs are created for:
 ### Input Validation
 - Server-side validation for all inputs
 - Prevention of SQL injection (EF Core parameterized queries)
-- XSS protection through proper encoding
 
 ### Audit Trail
 - Complete audit log of all operations
@@ -334,8 +333,11 @@ Special audit logs are created for:
 ### Improvements
 
 1. Authentication & Authorization
-2. API Versioning
-3. Caching 
-4. Replace In-Memory Database with SQL Server/PostgreSQL
+2. Replace In-Memory Database with SQL Server
+3. API Versioning - backward campatability
+4. Caching
+5. Add Application Insight
+6. Input sanitization - XSS prevention 
+1. DB Migrations - version control
 
 

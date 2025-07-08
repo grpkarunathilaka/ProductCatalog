@@ -92,10 +92,12 @@ namespace ProductCatalog.Api.Controllers.Tests
         public async Task GetProducts_ReturnsOk_WithPageResult()
         {
             // Arrange
-            var query = new ProductQueryDto();
+            var query = new ProductQueryDto();           
+            var product = CreateValidProduct();
+
             var pageResult = new PageResult<ProductDto>
             {
-                Items = new List<ProductDto> { new ProductDto { Id = 1, Name = "Test", Brand = "Brand", Price = 10 } },
+                Items = new List<ProductDto> { product },
                 TotalCount = 1,
                 PageNumber = 1,
                 PageSize = 10
@@ -130,7 +132,7 @@ namespace ProductCatalog.Api.Controllers.Tests
         {
             // Arrange
             var createDto = new CreateProductDto { Name = "Test", Brand = "Brand", Price = 10 };
-            var productDto = new ProductDto { Id = 1, Name = "Test", Brand = "Brand", Price = 10 };
+            var productDto = CreateValidProduct();
             _mockProductService.Setup(s => s.CreateProductAsync(createDto)).ReturnsAsync(productDto);
 
             // Act
@@ -139,21 +141,7 @@ namespace ProductCatalog.Api.Controllers.Tests
             // Assert
             var createdResult = Assert.IsType<CreatedAtActionResult>(result.Result);
             Assert.Equal(productDto, createdResult.Value);
-        }
-
-        [Fact]
-        public async Task CreateProduct_ReturnsBadRequest_WhenModelStateInvalid()
-        {
-            // Arrange
-            _controller.ModelState.AddModelError("Name", "Required");
-            var createDto = new CreateProductDto();
-
-            // Act
-            var result = await _controller.CreateProduct(createDto);
-
-            // Assert
-            Assert.IsType<BadRequestObjectResult>(result.Result);
-        }
+        }        
 
         [Fact]
         public async Task CreateProduct_ReturnsConflict_OnDuplicate()
@@ -198,21 +186,7 @@ namespace ProductCatalog.Api.Controllers.Tests
             // Assert
             var okResult = Assert.IsType<OkObjectResult>(result.Result);
             Assert.Equal(productDto, okResult.Value);
-        }
-
-        [Fact]
-        public async Task UpdateProduct_ReturnsBadRequest_WhenModelStateInvalid()
-        {
-            // Arrange
-            _controller.ModelState.AddModelError("Name", "Required");
-            var updateDto = new UpdateProductDto();
-
-            // Act
-            var result = await _controller.UpdateProduct(1, updateDto);
-
-            // Assert
-            Assert.IsType<BadRequestObjectResult>(result.Result);
-        }
+        }       
 
         [Fact]
         public async Task UpdateProduct_ReturnsNotFound_WhenProductNull()

@@ -87,7 +87,7 @@ namespace ProductCatalog.Infrastructure.Repositories
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error checking if product exists: Name={Name}, Brand={Brand}, Excluded={Excluded}", name, brand, excludeId);+
+                _logger.LogError(ex, "Error checking if product exists: Name={Name}, Brand={Brand}, Excluded={Excluded}", name, brand, excludeId);
                 throw;
             }
         }

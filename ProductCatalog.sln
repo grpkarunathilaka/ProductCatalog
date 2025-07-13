@@ -18,9 +18,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Domain", "Pr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Api.xUnit", "ProductCatalog.Api.xUnit\ProductCatalog.Api.xUnit.csproj", "{34AC3982-382E-4049-B4E8-810360D13447}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Api.Tests", "ProductCatalog.Api.xUnit\ProductCatalog.Api.Tests.csproj", "{34AC3982-382E-4049-B4E8-810360D13447}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.ApplicationTests", "ProductCatalog.ApplicationTests\ProductCatalog.ApplicationTests.csproj", "{5B1F7225-3F93-4781-9893-A95967446027}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProductCatalog.Application.Tests", "ProductCatalog.ApplicationTests\ProductCatalog.Application.Tests.csproj", "{5B1F7225-3F93-4781-9893-A95967446027}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

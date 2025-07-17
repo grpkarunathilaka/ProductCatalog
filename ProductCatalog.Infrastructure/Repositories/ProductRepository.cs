@@ -13,16 +13,11 @@ using System.Threading.Tasks;
 
 namespace ProductCatalog.Infrastructure.Repositories
 {
-    public class ProductRepository : IProductRepository
+    public class ProductRepository(ProductDbContext context, ILogger<ProductRepository> logger) : IProductRepository
     {
-        private readonly ProductDbContext _context;
-        private readonly ILogger<ProductRepository> _logger;
+        private readonly ProductDbContext _context = context;
+        private readonly ILogger<ProductRepository> _logger = logger;
 
-        public ProductRepository(ProductDbContext context, ILogger<ProductRepository> logger)
-        {
-            _context = context;
-            _logger = logger;
-        }
 
         public async Task<Product> CreateAsync(Product product)
         {
@@ -102,12 +97,12 @@ namespace ProductCatalog.Infrastructure.Repositories
                 //Apply filters
                 if (!string.IsNullOrEmpty(query.Name))
                 {
-                    queryable = queryable.Where(p => p.Name.Contains(query.Name));
+                    queryable = queryable.Where(p => p.Name.ToLower().Contains(query.Name.ToLower()));
                 }
 
                 if (!string.IsNullOrEmpty(query.Brand))
                 {
-                    queryable = queryable.Where(p => p.Brand.Contains(query.Brand));
+                    queryable = queryable.Where(p => p.Brand.ToLower().Contains(query.Brand.ToLower()));
                 }
 
                 if (query.MinPrice.HasValue)
@@ -124,7 +119,7 @@ namespace ProductCatalog.Infrastructure.Repositories
 
                 //Apply pagination
                 var items = await queryable
-                    .OrderBy(p => p.Name)
+                    .OrderBy(p => p.Id)
                     .ThenBy(p => p.Brand)
                     .Skip((query.PageNumber - 1) * query.PageSize)
                     .Take(query.PageSize)

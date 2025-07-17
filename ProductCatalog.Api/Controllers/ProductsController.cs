@@ -2,23 +2,15 @@
 using ProductCatalog.Application.DTOs;
 using ProductCatalog.Application.Interfaces;
 
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-
 namespace ProductCatalog.Api.Controllers
 {
     [Route("api/[controller]")]
     [Produces("application/json")]
     [ApiController]
-    public class ProductsController : ControllerBase
+    public class ProductsController(IProductService productService, ILogger<ProductsController> logger) : ControllerBase
     {
-        private readonly IProductService _productService;
-        private readonly ILogger<ProductsController> _logger;
-
-        public ProductsController(IProductService productService, ILogger<ProductsController> logger)
-        {
-            _productService = productService;
-            _logger = logger;
-        }
+        private readonly IProductService _productService = productService;
+        private readonly ILogger<ProductsController> _logger = logger;
 
 
         /// <summary>

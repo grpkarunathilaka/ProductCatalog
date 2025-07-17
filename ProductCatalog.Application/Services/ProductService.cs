@@ -11,14 +11,10 @@ using System.Threading.Tasks;
 
 namespace ProductCatalog.Application.Services
 {
-    public class ProductService : IProductService
+    public class ProductService(IProductRepository productRepository, ILogger<ProductService> logger) : IProductService
     {
-        private readonly IProductRepository _productRepository;
-        private readonly ILogger<ProductService> _logger;
-        public ProductService(IProductRepository productRepository, ILogger<ProductService> logger) {
-            _productRepository = productRepository;
-            _logger = logger;
-        }
+        private readonly IProductRepository _productRepository = productRepository;
+        private readonly ILogger<ProductService> _logger = logger;
         public async Task<ProductDto> CreateProductAsync(CreateProductDto createProductDto)
         {
             try
@@ -170,15 +166,14 @@ namespace ProductCatalog.Application.Services
         #region Private Methods
         private static ProductDto MapToDto(Product product)
         {
-            return new ProductDto
-            {
-                Id = product.Id,
-                Name = product.Name,
-                Brand = product.Brand,
-                Price = product.Price,
-                CreateAt = product.CreateAt,
-                UpdateAt = product.UpdateAt
-            };
+            return new ProductDto(
+               product.Id,
+               product.Name,
+               product.Brand,
+               product.Price,
+               product.CreateAt,
+               product.UpdateAt
+           );
         }
         #endregion
     }

@@ -6,15 +6,14 @@ using System.Threading.Tasks;
 
 namespace ProductCatalog.Application.DTOs
 {
-    public class ProductDto
-    {
-        public int Id { get; set; }
-        public string Name { get; set; }
-        public string Brand { get; set; }
-        public decimal Price { get; set; }
-        public DateTime CreateAt { get; set; }
-        public DateTime UpdateAt { get; set; }
-    }
+    public record ProductDto(
+        int Id,
+        string Name,
+        string Brand,
+        decimal Price,
+        DateTime CreateAt,
+        DateTime UpdateAt
+    );
 }
 
 

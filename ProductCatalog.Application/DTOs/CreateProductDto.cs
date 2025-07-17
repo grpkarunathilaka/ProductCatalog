@@ -1,15 +1,11 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ProductCatalog.Application.DTOs
-{
-    public class CreateProductDto
-    {
-        public string Name { get; set; } = string.Empty;
+namespace ProductCatalog.Application.DTOs;
 
-        public string Brand { get; set; } = string.Empty;
-
-        public decimal Price { get; set; }
-    }
-}
+public record CreateProductDto(
+ string Name = "",
+ string Brand = "",
+ decimal Price = 0m
+);
 
 
